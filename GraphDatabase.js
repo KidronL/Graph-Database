@@ -11,8 +11,8 @@ Daogba.G =  {}; // Prototype
 Dagoba.graph = (V, E) => {
     const graph = Object.create(Dagoba.G)
 
-    graph.edges       = [];
-    graph.vertices    = [];
+    graph.edges = [];
+    graph.vertices = [];
     graph.vertexIndex = {};
 
     graph.autoid = 1;
@@ -24,7 +24,7 @@ Dagoba.graph = (V, E) => {
 }
 
 Dagoba.G.addVertices = (vs) => {vs.forEach(this.AddVertex.bind(this))}
-Dagoba.G.addEdges    = (es) =>{es.forEach(this.AddEdge.bind(this))}
+Dagoba.G.addEdges = (es) =>{es.forEach(this.AddEdge.bind(this))}
 
 Dagoba.G.addVertex = (vertex) => {
     if(!vertex._id) {
@@ -54,4 +54,19 @@ Dagoba.G.addEdge = (edge) => {
 
     this.edges.push(edge);
 }
+
+Dagoba.Q = {};
+
+Dagoba.query = (graph) => {
+    let query = Object.create(Dagoba.Q);
+
+    query.graph = graph;
+    query.state = [];
+    query.program = [];
+    query.gremlins = [];
+
+    return query;
+}
+
+
 
