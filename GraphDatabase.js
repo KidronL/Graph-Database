@@ -1,5 +1,10 @@
 let Dagoba = {};
 
+Dagoba.error = (message) => {
+    console.log(message);
+    return false;
+}
+
 Daogba.G =  {}; // Prototype
 
 // Factory function
@@ -35,3 +40,18 @@ Dagoba.G.addVertex = (vertex) => {
 
     return vertex._id;
 }
+
+Dagoba.G.addEdge = (edge) => {
+    edge._in = this.findVertexByID(edge._in);
+    edge._out = this.findVertexByID(edge._out);
+
+    if(!edge._in && !edge._out) {
+        return Dagoba.error(`Vertex with id ${edge._in} or ${edge._out} does not exist`);
+    }
+
+    edge._out._out.push(edge);
+    edge._in._in.push(edge);
+
+    this.edges.push(edge);
+}
+
