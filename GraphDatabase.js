@@ -55,6 +55,12 @@ Dagoba.G.addEdge = (edge) => {
     this.edges.push(edge);
 }
 
+Dagoba.G.v = () => {
+    let query = Dagoba.query(this);
+    query.add('v', [].slice.call(arguments));
+    return query;
+}
+
 Dagoba.Q = {};
 
 Dagoba.query = (graph) => {
@@ -68,5 +74,9 @@ Dagoba.query = (graph) => {
     return query;
 }
 
-
+Dagoba.Q.add = ( pipetype, args) => {
+    let step = [pipetype, args];
+    this.program.push(step);
+    return this;
+}
 
